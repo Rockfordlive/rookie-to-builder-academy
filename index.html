@@ -1,0 +1,686 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rookie-to-Builder Academy</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Learning navigation">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" role="img">
+              <path d="M17.5 2.8c4.9.8 8.6 4.5 9.4 9.4l.6 3.6-4.1.9-8.2 8.2-4.6-4.6 8.2-8.2.9-4.1-3.6-.6c-1.4-.2-2.6-.2-3.7.1 1.2-2.8 2.8-4.3 5.1-4.7Z" />
+              <path d="M9.4 18.2 5.1 22.5c-1.2 1.2-1.8 2.9-1.5 4.6 1.7.3 3.4-.3 4.6-1.5l4.3-4.3-3.1-3.1Z" />
+              <circle cx="20.4" cy="10.9" r="2.3" />
+            </svg>
+          </div>
+          <div>
+            <strong>Rookie-to-Builder</strong>
+            <span>AI Tools Academy</span>
+          </div>
+        </div>
+
+        <nav class="primary-nav" id="primaryNav"></nav>
+
+        <div class="helper-card">
+          <span class="mini-icon">?</span>
+          <strong>Beginner rule</strong>
+          <p>Start read-only. Let tools explain before you let them change, send, deploy, or delete anything.</p>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <h1>Rookie-to-Builder Academy</h1>
+            <p>Learn the tools, then build real support apps, dashboards, agents, and automations safely.</p>
+          </div>
+          <div class="top-actions">
+            <button class="ghost-button" id="resetProgressBtn" type="button">Reset progress</button>
+            <a class="source-link" href="#sources">Sources</a>
+          </div>
+        </header>
+
+        <section class="progress-band" aria-label="Learning progress">
+          <div class="ring" id="progressRing" style="--progress: 0%">
+            <span id="progressPercent">0%</span>
+          </div>
+          <div class="progress-copy">
+            <strong id="progressTitle">Your learning journey is ready.</strong>
+            <p id="progressSubtitle">Complete modules, try the simulators, and build confidence one small win at a time.</p>
+            <div class="progress-track"><span id="progressBar"></span></div>
+          </div>
+          <button class="primary-button" type="button" data-scroll="learning-path">Continue learning</button>
+        </section>
+
+        <section class="dashboard-grid" id="dashboard">
+          <article class="panel wide">
+            <div class="section-title">
+              <div>
+                <h2>Idea to Impact Map</h2>
+                <p>The simplest mental model for building with AI coding tools.</p>
+              </div>
+            </div>
+            <div class="journey-map">
+              <div class="map-step">
+                <span class="map-icon">1</span>
+                <strong>Idea</strong>
+                <p>Describe the problem and who it helps.</p>
+              </div>
+              <div class="map-line"></div>
+              <div class="map-step">
+                <span class="map-icon">2</span>
+                <strong>Files</strong>
+                <p>Your app is just organized files in a folder.</p>
+              </div>
+              <div class="map-line"></div>
+              <div class="map-step">
+                <span class="map-icon">3</span>
+                <strong>Repo</strong>
+                <p>GitHub stores the project and its history.</p>
+              </div>
+              <div class="map-line"></div>
+              <div class="map-step">
+                <span class="map-icon">4</span>
+                <strong>Agent</strong>
+                <p>Claude Code or Codex edits, tests, and explains.</p>
+              </div>
+              <div class="map-line"></div>
+              <div class="map-step">
+                <span class="map-icon">5</span>
+                <strong>Deploy</strong>
+                <p>Publish so teammates can actually use it.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <h2>Tool Chooser</h2>
+            <p class="panel-intro">Tell the app what you are trying to do.</p>
+            <label class="field-label" for="toolGoal">I want to...</label>
+            <select id="toolGoal">
+              <option value="brainstorm">Brainstorm or write a plan</option>
+              <option value="local-build">Build or edit app files on my computer</option>
+              <option value="repo-agent">Ask an agent to work on a GitHub repo</option>
+              <option value="company-data">Use company docs, tickets, or support knowledge</option>
+              <option value="microsoft">Build a Teams/Microsoft 365 business agent</option>
+              <option value="workflow">Automate predictable repeated steps</option>
+            </select>
+            <div class="recommendation" id="toolRecommendation"></div>
+          </article>
+
+          <article class="panel">
+            <h2>Should This Be an Agent?</h2>
+            <p class="panel-intro">Use the smallest tool that can do the job safely.</p>
+            <label class="field-label" for="agentNeed">The work mostly needs...</label>
+            <select id="agentNeed">
+              <option value="one-time">One answer or one draft</option>
+              <option value="repeatable">Same steps every time</option>
+              <option value="judgment">Judgment, searching, routing, or exception handling</option>
+              <option value="sensitive-action">Sending, editing records, sharing, or customer impact</option>
+            </select>
+            <div class="recommendation amber" id="agentRecommendation"></div>
+          </article>
+        </section>
+
+        <section class="module-section" id="learning-path">
+          <div class="section-title">
+            <div>
+              <h2>Learning Path</h2>
+              <p>Short lessons in the order a rookie should learn them.</p>
+            </div>
+          </div>
+          <div class="module-list" id="moduleList"></div>
+        </section>
+
+        <section class="module-section" id="claude-foundations">
+          <div class="section-title">
+            <div>
+              <h2>Claude Foundations</h2>
+              <p>A beginner bridge from "I have used chat AI" to "I understand Claude, projects, artifacts, context, tokens, connectors, and when to use each tool."</p>
+            </div>
+            <button class="primary-button" type="button" data-modal="claude-foundations-overview">Open beginner map</button>
+          </div>
+
+          <div class="foundation-intro">
+            <article>
+              <span class="map-icon">1</span>
+              <strong>Understand AI</strong>
+              <p>Learn what Claude, ChatGPT, Gemini, LLMs, context windows, tokens, and memory really mean.</p>
+            </article>
+            <article>
+              <span class="map-icon">2</span>
+              <strong>Use Claude Well</strong>
+              <p>Set up Projects, Artifacts, Connectors, handovers, and prompting habits before opening a code editor.</p>
+            </article>
+            <article>
+              <span class="map-icon">3</span>
+              <strong>Flow Into Building</strong>
+              <p>Once the Claude mental model is clear, VS Code and Claude Code will feel much less mysterious.</p>
+            </article>
+          </div>
+
+          <div class="foundation-course-shell">
+            <aside class="foundation-course-nav" aria-label="Claude Foundations course chapters">
+              <div class="foundation-nav-kicker">Course chapters</div>
+              <div class="foundation-tabs" id="foundationTabs" aria-label="Claude foundations chapters"></div>
+            </aside>
+            <div class="foundation-lesson" id="foundationLesson"></div>
+          </div>
+        </section>
+
+        <section class="module-section" id="app-anatomy">
+          <div class="section-title">
+            <div>
+              <h2>Files & App Anatomy</h2>
+              <p>A plain-English bridge into folders, file types, JSON, CSS, JavaScript, Python, scripts, frontend/backend thinking, and how coding agents work inside a project folder.</p>
+            </div>
+            <button class="primary-button" type="button" data-modal="app-anatomy-overview">Open file map</button>
+          </div>
+
+          <div class="anatomy-intro">
+            <article>
+              <span class="map-icon">1</span>
+              <strong>The Folder Is The Boundary</strong>
+              <p>Before VS Code or Claude Code, learn why one project should live in one clear folder.</p>
+            </article>
+            <article>
+              <span class="map-icon">2</span>
+              <strong>Files Have Jobs</strong>
+              <p>Learn what .html, .css, .js, .json, .py, .md, .csv, scripts, and README files usually do.</p>
+            </article>
+            <article>
+              <span class="map-icon">3</span>
+              <strong>Agents Need Access</strong>
+              <p>See how Codex and Claude Code read, create, edit, and test files inside the folder you give them.</p>
+            </article>
+          </div>
+
+          <div class="lesson-tabs" id="anatomyTabs" aria-label="Files and app anatomy topics"></div>
+          <div class="anatomy-lesson" id="anatomyLesson"></div>
+
+          <div class="anatomy-lab">
+            <article class="builder-panel anatomy-builder-panel">
+              <span class="tag anatomy-lab-tag">Interactive folder map</span>
+              <h3>Which kind of project am I looking at?</h3>
+              <p>Choose a project type and see what the folder usually contains, why those pieces exist, and where the risk points are.</p>
+              <label class="field-label" for="anatomyScenario">Project type</label>
+              <div class="anatomy-select-wrap">
+                <select id="anatomyScenario">
+                  <option value="staticCourse">Static website or learning course</option>
+                  <option value="sharedData">Google Sheets-backed internal tool</option>
+                  <option value="aiBackend">AI app with a backend</option>
+                  <option value="agentWorkspace">Claude Code or Codex workspace</option>
+                </select>
+              </div>
+            </article>
+            <article class="blueprint-card anatomy-result-card" id="anatomyScenarioResult" aria-live="polite"></article>
+          </div>
+
+          <div class="anatomy-safety-grid">
+            <details>
+              <summary>Beginner rule: open the right folder</summary>
+              <p>When you open a folder in VS Code, that folder becomes the main working area. If Claude Code or Codex is helping you, ask it to confirm the folder name before it edits anything.</p>
+            </details>
+            <details>
+              <summary>Beginner rule: ask before running scripts</summary>
+              <p>Scripts can be helpful, but they can also change files, install packages, or touch data. Ask the AI to explain what a script does, what files it touches, and whether it needs credentials.</p>
+            </details>
+            <details>
+              <summary>Beginner rule: keep secrets out of frontend files</summary>
+              <p>If a file can be opened in the browser or published through GitHub Pages, assume other people may inspect it. API keys and passwords belong in approved secret storage or a backend, not in app.js or data.json.</p>
+            </details>
+          </div>
+        </section>
+
+        <section class="module-section" id="vscode">
+          <div class="section-title">
+            <div>
+              <h2>VS Code Basics for Absolute Beginners</h2>
+              <p>A practical guide to folders, workspaces, switching projects, files, terminal, Git, and using Claude Code safely inside VS Code.</p>
+            </div>
+            <button class="primary-button" type="button" data-modal="vscode-overview">Open VS Code cheat sheet</button>
+          </div>
+
+          <div class="vscode-layout-map">
+            <article>
+              <span class="map-icon">A</span>
+              <strong>Activity Bar</strong>
+              <p>Switch between Explorer, Search, Source Control, Extensions, and AI tools.</p>
+            </article>
+            <article>
+              <span class="map-icon">E</span>
+              <strong>Explorer</strong>
+              <p>Your project files and folders. This is your home base.</p>
+            </article>
+            <article>
+              <span class="map-icon">F</span>
+              <strong>Editor</strong>
+              <p>The file you are reading or changing opens in the middle.</p>
+            </article>
+            <article>
+              <span class="map-icon">T</span>
+              <strong>Terminal</strong>
+              <p>Run project commands without leaving VS Code.</p>
+            </article>
+            <article>
+              <span class="map-icon">G</span>
+              <strong>Source Control</strong>
+              <p>See what changed before you commit or share anything.</p>
+            </article>
+          </div>
+
+          <div class="lesson-tabs" id="vscodeTabs" aria-label="VS Code beginner topics"></div>
+          <div class="vscode-lesson" id="vscodeLesson"></div>
+
+          <div class="vscode-scenario-grid">
+            <article class="builder-panel">
+              <h3>What are you trying to do in VS Code?</h3>
+              <p>Choose a situation and the app will tell you the safest beginner path.</p>
+              <label class="field-label" for="vscodeScenario">Situation</label>
+              <select id="vscodeScenario">
+                <option value="newProject">Start a brand-new app</option>
+                <option value="switchProject">Switch from one project to another</option>
+                <option value="aiEdit">Ask Claude Code to change files</option>
+                <option value="lost">I feel lost in VS Code</option>
+              </select>
+            </article>
+            <article class="blueprint-card" id="vscodeScenarioResult" aria-live="polite"></article>
+          </div>
+
+          <div class="accordion-group">
+            <details class="learning-accordion" open>
+              <summary>What is the difference between a folder and a workspace?</summary>
+              <p>A folder is the actual place on your computer where files live. A workspace is the folder, or set of folders, currently open in VS Code. For beginners, treat them as the same thing: open one project folder and work there.</p>
+            </details>
+            <details class="learning-accordion">
+              <summary>How do I know which project VS Code is working on?</summary>
+              <p>Look at the Explorer root name on the left. That top folder is the workspace. Also open the terminal and check its path. If the folder name is wrong, stop before asking AI to edit anything.</p>
+            </details>
+            <details class="learning-accordion">
+              <summary>Should I use one VS Code window or many?</summary>
+              <p>Use one window per unrelated project. Use multiple windows when comparing separate apps. Add multiple folders to the same workspace only when the folders are part of the same job.</p>
+            </details>
+            <details class="learning-accordion">
+              <summary>What should I ask Claude Code first?</summary>
+              <p>Start with: "Please explain this project folder in plain English. What files are here, what does each one do, and what should I be careful about before changing anything?"</p>
+            </details>
+          </div>
+        </section>
+
+        <section class="split-section" id="github">
+          <article class="panel">
+            <h2>GitHub From Zero</h2>
+            <p>Think of GitHub as shared project storage with memory, review, and publishing.</p>
+            <div class="term-stack">
+              <div><strong>Repository</strong><span>A project folder on GitHub with files and history.</span></div>
+              <div><strong>Commit</strong><span>A saved checkpoint with a message.</span></div>
+              <div><strong>Branch</strong><span>A safe side copy where changes can be tried.</span></div>
+              <div><strong>Pull request</strong><span>A review request before changes join the main version.</span></div>
+              <div><strong>GitHub Pages</strong><span>A way to publish static HTML/CSS/JS sites from a repo.</span></div>
+            </div>
+          </article>
+
+          <article class="panel simulator">
+            <div class="section-title tight">
+              <div>
+                <h2>Workflow Simulator</h2>
+                <p>Click each step to practice the basic GitHub story.</p>
+              </div>
+              <button class="ghost-button" id="resetSimulatorBtn" type="button">Reset</button>
+            </div>
+            <div class="sim-steps" id="simSteps"></div>
+            <div class="terminal-card" id="simTerminal" aria-live="polite"></div>
+          </article>
+        </section>
+
+        <section class="module-section" id="agents">
+          <div class="section-title">
+            <div>
+              <h2>Agents vs Prompts vs Automations</h2>
+              <p>Agentic AI matters when work needs context, tools, decisions, and safe handoffs.</p>
+            </div>
+          </div>
+          <div class="comparison-grid">
+            <article class="compare-card">
+              <span class="compare-icon">P</span>
+              <h3>Prompt</h3>
+              <p>One instruction you run manually. Best for drafting, explaining, summarizing, or brainstorming.</p>
+              <code>Question -> Answer</code>
+            </article>
+            <article class="compare-card">
+              <span class="compare-icon">A</span>
+              <h3>Automation</h3>
+              <p>A fixed trigger and predictable steps. Best when the process does not need much judgment.</p>
+              <code>Trigger -> Fixed steps -> Output</code>
+            </article>
+            <article class="compare-card featured">
+              <span class="compare-icon">G</span>
+              <h3>Agent</h3>
+              <p>A goal-seeking helper that can inspect context, choose tools, adapt, verify, and ask humans before risky actions.</p>
+              <code>Goal -> Context -> Decide -> Tools -> Verify</code>
+            </article>
+          </div>
+        </section>
+
+        <section class="module-section" id="agent-library">
+          <div class="section-title">
+            <div>
+              <h2>20 Agent Ideas for Global Support</h2>
+              <p>Examples depend on what your company approves. Treat them as safe patterns, not permission.</p>
+            </div>
+          </div>
+          <div class="filter-row">
+            <select id="riskFilter" aria-label="Filter by risk">
+              <option value="all">All risk levels</option>
+              <option value="Low">Low risk</option>
+              <option value="Medium">Medium risk</option>
+              <option value="High">High risk</option>
+            </select>
+            <select id="difficultyFilter" aria-label="Filter by difficulty">
+              <option value="all">All difficulty</option>
+              <option value="Starter">Starter</option>
+              <option value="Builder">Builder</option>
+              <option value="Advanced">Advanced</option>
+            </select>
+            <input id="agentSearch" type="search" placeholder="Search agents, tools, or outcomes" />
+          </div>
+          <div class="agent-grid" id="agentGrid"></div>
+        </section>
+
+        <section class="module-section" id="microsoft">
+          <div class="section-title">
+            <div>
+              <h2>Azure and Copilot Studio</h2>
+              <p>A practical how-to guide for building support agents that live in Teams, Microsoft 365, SharePoint, Power Platform, or Azure.</p>
+            </div>
+            <button class="primary-button" type="button" data-modal="microsoft-overview">Open beginner guide</button>
+          </div>
+
+          <div class="lesson-tabs" id="microsoftTabs" aria-label="Microsoft learning tabs"></div>
+          <div class="microsoft-course" id="microsoftLesson"></div>
+
+          <div class="section-title compact-title">
+            <div>
+              <h3>Click to flip: Which Microsoft piece does what?</h3>
+              <p>Tap a card to reveal the rookie translation and support use cases.</p>
+            </div>
+          </div>
+          <div class="flip-grid" id="microsoftFlipGrid"></div>
+
+          <div class="microsoft-workshop">
+            <article class="builder-panel">
+              <h3>Build a first support-agent blueprint</h3>
+              <p>Choose a scenario and the app will explain which Microsoft route makes sense, what access it may need, and where a human approval step belongs.</p>
+              <label class="field-label" for="msScenario">Support scenario</label>
+              <select id="msScenario">
+                <option value="knowledge">Answer internal support questions from approved knowledge</option>
+                <option value="handoff">Create shift handoff notes from case context</option>
+                <option value="sla">Monitor SLA risk and draft action lists</option>
+                <option value="incident">Build incident summaries and timeline drafts</option>
+              </select>
+              <label class="field-label" for="msData">Data sensitivity</label>
+              <select id="msData">
+                <option value="internal">Internal docs or team process data</option>
+                <option value="customer">Customer-impacting case data</option>
+                <option value="restricted">Restricted, regulated, or high-risk data</option>
+              </select>
+              <label class="field-label" for="msChannel">Where should people use it?</label>
+              <select id="msChannel">
+                <option value="teams">Teams or Microsoft 365 Copilot</option>
+                <option value="web">Internal website</option>
+                <option value="api">Backend/API used by another app</option>
+              </select>
+            </article>
+            <article class="blueprint-card" id="msBlueprint" aria-live="polite"></article>
+          </div>
+
+          <div class="accordion-group" id="microsoftAccordions"></div>
+
+          <div class="guided-path">
+            <div>
+              <h3>Beginner build path: from idea to deployed agent</h3>
+              <p>Use this as your mental checklist before asking anyone for access or touching real data.</p>
+            </div>
+            <ol>
+              <li><strong>Define the job:</strong> Write the one support task the agent should help with and what a good answer looks like.</li>
+              <li><strong>Choose the home:</strong> Teams or Microsoft 365 means Copilot Studio; custom hosted API means Foundry/Azure; simple repeated workflow means Power Automate or agent flows.</li>
+              <li><strong>Pick knowledge:</strong> Start with one approved source such as SharePoint, internal docs, or a curated FAQ. Avoid broad access first.</li>
+              <li><strong>Add actions carefully:</strong> Reading is lower risk. Creating tickets, sending messages, or updating records needs approval gates.</li>
+              <li><strong>Test with fake examples:</strong> Use non-sensitive scenarios and make sure the agent cites sources or explains uncertainty.</li>
+              <li><strong>Publish small:</strong> Start with a small audience, monitor mistakes, and expand only after trust improves.</li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="module-section" id="claude-linkedin">
+          <div class="section-title">
+            <div>
+              <h2>Claude Code for LinkedIn</h2>
+              <p>A detailed beginner guide based on the Claude Code 101 and 201 training decks, translated into simpler language and support-friendly examples.</p>
+            </div>
+            <button class="primary-button" type="button" data-modal="claude-linkedin-overview">Open Claude Code map</button>
+          </div>
+
+          <div class="claude-flow">
+            <article>
+              <span class="map-icon">1</span>
+              <strong>Goal</strong>
+              <p>Tell Claude what outcome you want, not just what code to write.</p>
+            </article>
+            <article>
+              <span class="map-icon">2</span>
+              <strong>Context</strong>
+              <p>Open the right folder and give files, screenshots, docs, or ticket details.</p>
+            </article>
+            <article>
+              <span class="map-icon">3</span>
+              <strong>Plan</strong>
+              <p>Use Plan Mode for bigger changes so Claude proposes before editing.</p>
+            </article>
+            <article>
+              <span class="map-icon">4</span>
+              <strong>Tools</strong>
+              <p>Let Claude read, edit, test, search, or use approved MCP connections.</p>
+            </article>
+            <article>
+              <span class="map-icon">5</span>
+              <strong>Verify</strong>
+              <p>Review diffs, run tests, use screenshots, then decide whether to share.</p>
+            </article>
+          </div>
+
+          <div class="lesson-tabs" id="claudeTabs" aria-label="Claude Code for LinkedIn topics"></div>
+          <div class="claude-lesson" id="claudeLesson"></div>
+
+          <div class="claude-tools-grid">
+            <article class="builder-panel">
+              <h3>What should I use in Claude Code?</h3>
+              <p>Pick what you are trying to do and get a beginner-friendly recommendation from the 101/201 deck concepts.</p>
+              <label class="field-label" for="claudeScenario">I want to...</label>
+              <select id="claudeScenario">
+                <option value="learnRepo">Understand a repo or unfamiliar project</option>
+                <option value="prototype">Turn an idea or PRD into a prototype</option>
+                <option value="repeatWorkflow">Repeat the same workflow often</option>
+                <option value="companyData">Connect Claude to company tools or data</option>
+                <option value="parallel">Run multiple Claude tasks at once</option>
+                <option value="safeReview">Review or ship changes safely</option>
+              </select>
+            </article>
+            <article class="blueprint-card" id="claudeScenarioResult" aria-live="polite"></article>
+          </div>
+
+          <div class="section-title compact-title">
+            <div>
+              <h3>Claude Code command and feature reference</h3>
+              <p>Shortcuts from the training decks, rewritten for a rookie builder.</p>
+            </div>
+          </div>
+          <div class="command-grid" id="claudeCommandGrid"></div>
+
+          <div class="accordion-group">
+            <details class="learning-accordion" open>
+              <summary>What changed from Claude Code 101 to 201?</summary>
+              <p>Claude Code 101 teaches the foundation: what agents are, how to install and run Claude Code, how to use natural language, Plan Mode, file mentions, IDE integration, CLAUDE.md, MCP, permissions, screenshots, resume, and basic product workflows. Claude Code 201 teaches deeper customization: plugins, skills, slash commands, subagents, hooks, MCP management, parallel Claude, Agent SDK workflows, and CLAUDE.md hierarchy.</p>
+            </details>
+            <details class="learning-accordion">
+              <summary>What is the simplest first prompt to try?</summary>
+              <p>Try: "Please inspect this folder and explain it to me like I am new to coding. What are the important files, what does this project do, and what is the safest first improvement I could ask you to make?"</p>
+            </details>
+            <details class="learning-accordion">
+              <summary>What should I avoid?</summary>
+              <p>Avoid opening Claude Code in a giant personal folder, approving edits you do not understand, connecting data sources just because they are available, or asking it to send/share/update records without a human review step.</p>
+            </details>
+          </div>
+        </section>
+
+        <section class="module-section" id="setup">
+          <div class="section-title">
+            <div>
+              <h2>Claude Setup Checklist</h2>
+              <p>Translated from the setup docs into what each step means, why it matters, and what it enables.</p>
+            </div>
+          </div>
+          <div class="setup-list" id="setupList"></div>
+        </section>
+
+        <section class="module-section" id="deploy">
+          <div class="section-title">
+            <div>
+              <h2>Deploy Apps</h2>
+              <p>How to share what you built: GitHub Pages for static front-end sites, or Google Apps Script for shared-data tools with a lightweight backend.</p>
+            </div>
+            <button class="primary-button" type="button" data-modal="deploy-overview">Open deployment map</button>
+          </div>
+
+          <div class="deploy-choice-grid">
+            <article class="builder-panel">
+              <h3>Which deployment path should I use?</h3>
+              <p>Choose the closest description. The app will recommend a path before you dive into the steps.</p>
+              <label class="field-label" for="deployNeed">My tool...</label>
+              <select id="deployNeed">
+                <option value="static">Is just HTML, Markdown, docs, or a front-end-only dashboard</option>
+                <option value="shared">Needs saving, Google Sheets sync, or multi-user writes</option>
+                <option value="unsure">I am not sure yet</option>
+              </select>
+            </article>
+            <article class="blueprint-card" id="deployDecision" aria-live="polite"></article>
+          </div>
+
+          <div class="lesson-tabs" id="deployTabs" aria-label="Deployment guide tabs"></div>
+          <div class="deploy-guide" id="deployGuide"></div>
+
+          <div class="section-title compact-title">
+            <div>
+              <h3>Deployment terms you will see</h3>
+              <p>Quick translations for the words that make deployment feel scarier than it is.</p>
+            </div>
+          </div>
+          <div class="command-grid" id="deployReferenceGrid"></div>
+
+          <div class="accordion-group">
+            <details class="learning-accordion" open>
+              <summary>GitHub Pages vs Apps Script in one sentence</summary>
+              <p>Use GitHub Pages when your site is front-end-only; use Google Apps Script when the tool needs shared data, Google Sheets sync, or a lightweight backend.</p>
+            </details>
+            <details class="learning-accordion">
+              <summary>What does "front-end-only" mean?</summary>
+              <p>It means the app can run in the browser from HTML, CSS, JavaScript, and static files. It does not need a private database, server code, hidden API key, or shared write storage.</p>
+            </details>
+            <details class="learning-accordion">
+              <summary>What does "backend" mean here?</summary>
+              <p>A backend is the part users do not directly see. It can save data, load shared state, write to Sheets, protect secrets, or coordinate multiple users. Apps Script can be a simple backend for small internal Google-based tools.</p>
+            </details>
+            <details class="learning-accordion">
+              <summary>What should I ask Claude before deploying?</summary>
+              <p>Ask: "Does this app need a backend, shared data, secret keys, customer data, or write actions? If yes, explain the safest deployment path before we publish."</p>
+            </details>
+          </div>
+        </section>
+
+        <section class="module-section" id="recipes">
+          <div class="section-title">
+            <div>
+              <h2>Project Recipes</h2>
+              <p>Practical builds that turn learning into muscle memory.</p>
+            </div>
+          </div>
+          <div class="recipe-grid" id="recipeGrid"></div>
+        </section>
+
+        <section class="split-section" id="glossary">
+          <article class="panel">
+            <h2>Glossary</h2>
+            <p>Search rookie-friendly definitions.</p>
+            <input id="glossarySearch" type="search" placeholder="Search repo, API, branch, MCP..." />
+            <div class="glossary-list" id="glossaryList"></div>
+          </article>
+
+          <article class="panel">
+            <h2>Safety and Access</h2>
+            <div class="safety-list">
+              <div><strong>Least access needed</strong><span>Only connect the folder, repo, or system needed for the task.</span></div>
+              <div><strong>Read-only first</strong><span>Ask tools to explain before asking them to edit, send, or deploy.</span></div>
+              <div><strong>Human approval</strong><span>Require approval before customer-facing, record-changing, or data-sharing actions.</span></div>
+              <div><strong>Approved sources</strong><span>Use company-approved MCPs, connectors, and plugins for company data.</span></div>
+              <div><strong>Free AI caution</strong><span>Free tiers change often. Verify current access and never send private data to random external APIs.</span></div>
+            </div>
+          </article>
+        </section>
+
+        <section class="module-section" id="quiz">
+          <div class="section-title">
+            <div>
+              <h2>Quick Check</h2>
+              <p>A small quiz to make sure the basics stuck.</p>
+            </div>
+          </div>
+          <div class="quiz-card" id="quizCard"></div>
+        </section>
+
+        <section class="module-section sources" id="sources">
+          <h2>Sources Used</h2>
+          <p>Claude setup content comes from the two PDFs in this folder. Claude Foundations content comes from index Earlier Claude.html in this folder, with quiz pieces removed. Files & App Anatomy is original beginner teaching added to bridge Claude concepts into VS Code and coding agents. Claude Code for LinkedIn content comes from the two training decks in Downloads plus official docs. Product explanations should be rechecked when access, pricing, or company policy matters.</p>
+          <ul>
+            <li><a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/about-repositories">GitHub Docs: About repositories</a></li>
+            <li><a href="https://docs.github.com/en/enterprise-server%403.15/get-started/start-your-journey/hello-world">GitHub Docs: Hello World workflow</a></li>
+            <li><a href="https://docs.github.com/en/pages">GitHub Pages documentation</a></li>
+            <li><a href="https://developers.google.com/apps-script/guides/web">Google Apps Script web apps</a></li>
+            <li><a href="https://developers.google.com/apps-script/guides/html/communication">Google Apps Script client-to-server communication</a></li>
+            <li><a href="https://code.visualstudio.com/docs/getstarted/getting-started">VS Code Getting Started</a></li>
+            <li><a href="https://code.visualstudio.com/docs/editing/workspaces/workspaces">VS Code Workspaces</a></li>
+            <li><a href="https://code.visualstudio.com/docs/terminal/basics/">VS Code Terminal Basics</a></li>
+            <li><a href="https://code.visualstudio.com/docs/editor/command-line">VS Code Command Line Interface</a></li>
+            <li><a href="https://code.claude.com/docs">Claude Code docs</a></li>
+            <li><a href="https://docs.anthropic.com/en/docs/claude-code/overview">Anthropic Claude Code overview</a></li>
+            <li><a href="https://docs.anthropic.com/en/docs/claude-code/slash-commands">Anthropic Claude Code slash commands</a></li>
+            <li><a href="https://claude.com/docs/plugins/overview">Claude plugins overview</a></li>
+            <li>Claude Foundations source: index Earlier Claude.html</li>
+            <li><a href="https://platform.openai.com/docs/codex">OpenAI Codex docs</a></li>
+            <li><a href="https://help.openai.com/en/articles/11369540-codex-in-chatgpt">OpenAI Help: Codex in ChatGPT</a></li>
+            <li><a href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/">Microsoft Copilot Studio docs</a></li>
+            <li><a href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio">Microsoft Copilot Studio overview</a></li>
+            <li><a href="https://learn.microsoft.com/en-us/microsoft-copilot-studio/publication-fundamentals-publish-channels">Microsoft Copilot Studio publish and channels</a></li>
+            <li><a href="https://learn.microsoft.com/en-us/connectors/">Microsoft connectors documentation</a></li>
+            <li><a href="https://learn.microsoft.com/azure/ai-foundry/agents/overview">Microsoft Foundry Agent Service overview</a></li>
+            <li>Claude Code 101 deck: LinkedIn Claude Code 101 (Product Org).pptx</li>
+            <li>Claude Code 201 deck: Claude Code 201_ Advanced Techniques.pptx</li>
+          </ul>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="modalBackdrop" hidden>
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button class="modal-close" type="button" id="modalClose" aria-label="Close modal">Close</button>
+        <div id="modalBody"></div>
+      </div>
+    </div>
+
+    <script src="claude-foundations-content.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
