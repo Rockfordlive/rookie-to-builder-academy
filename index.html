@@ -311,10 +311,11 @@
           </div>
         </section>
 
-        <section class="split-section" id="github">
+        <section class="module-section" id="github">
+          <div class="split-section">
           <article class="panel">
             <h2>GitHub From Zero</h2>
-            <p>Think of GitHub as shared project storage with memory, review, and publishing.</p>
+            <p>Think of GitHub as shared project storage with memory, review, teamwork, and simple website publishing.</p>
             <div class="term-stack">
               <div><strong>Repository</strong><span>A project folder on GitHub with files and history.</span></div>
               <div><strong>Commit</strong><span>A saved checkpoint with a message.</span></div>
@@ -335,6 +336,51 @@
             <div class="sim-steps" id="simSteps"></div>
             <div class="terminal-card" id="simTerminal" aria-live="polite"></div>
           </article>
+          </div>
+
+          <div class="github-course">
+          <div class="section-title">
+            <div>
+              <h2>GitHub for Absolute Beginners</h2>
+              <p>A slower, more detailed guide to what GitHub does, how people work inside it, and how simple HTML apps get published.</p>
+            </div>
+            <button class="primary-button" type="button" data-modal="github-overview">Open GitHub map</button>
+          </div>
+
+          <div class="lesson-tabs" id="githubTabs" aria-label="GitHub lesson tabs"></div>
+          <div class="lesson-stage" id="githubLesson"></div>
+
+          <div class="section-title compact">
+            <div>
+              <h3>Words That Matter</h3>
+              <p>The few GitHub terms you will see again and again.</p>
+            </div>
+          </div>
+          <div class="command-grid github-concepts" id="githubConceptGrid"></div>
+
+          <div class="deploy-choice-grid github-choice-grid">
+            <article class="panel">
+              <h3>Which GitHub path am I in?</h3>
+              <p>Choose the situation that sounds closest to your work.</p>
+              <label class="field-label" for="githubScenario">My situation...</label>
+              <select id="githubScenario">
+                <option value="firstWebsite">I made one HTML page and want to share it</option>
+                <option value="teammateReview">I want someone to review my app changes</option>
+                <option value="privateData">My app uses private data or an API key</option>
+                <option value="aiBuiltIt">Claude or Codex built files for me</option>
+              </select>
+            </article>
+            <article class="blueprint-card" id="githubScenarioResult" aria-live="polite"></article>
+          </div>
+
+          <div class="section-title compact">
+            <div>
+              <h3>Publishing Checklist</h3>
+              <p>Use this before putting a simple web or HTML app on GitHub Pages.</p>
+            </div>
+          </div>
+          <div class="github-checklist" id="githubPublishChecklist"></div>
+          </div>
         </section>
 
         <section class="module-section" id="agents">

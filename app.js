@@ -940,6 +940,140 @@ const simSteps = [
   ["Deploy with Pages", "Static HTML/CSS/JS can publish from the repo.", "Settings -> Pages -> Deploy from branch"],
 ];
 
+const githubLessons = [
+  {
+    id: "mental-model",
+    label: "Mental Model",
+    title: "What GitHub is, in normal language",
+    summary: "GitHub is a shared home for project files. It remembers every important version, shows who changed what, and gives teammates a review process before changes become official.",
+    why: "Without GitHub, a project can become a pile of renamed folders like final, final-v2, final-real-final. GitHub gives the project one trusted home and a visible history.",
+    steps: [
+      "A project starts as a folder on your computer, such as a small website with index.html, styles.css, and app.js.",
+      "Git tracks the folder history. Think of Git as the time machine running underneath the project.",
+      "GitHub stores a copy of that tracked project online so you and other people can reach the same files.",
+      "You save meaningful checkpoints called commits. Each commit has a short message explaining what changed.",
+      "When other people are involved, you usually make a branch and open a pull request so changes can be reviewed before they join the main project.",
+    ],
+    watch: "Git and GitHub are related but not identical. Git is the history tool. GitHub is the website/platform where that history is stored, reviewed, discussed, and sometimes published.",
+  },
+  {
+    id: "repo-tour",
+    label: "Repo Tour",
+    title: "What you see inside a GitHub repository",
+    summary: "A repository, often shortened to repo, is the project page. It contains files, history, issues, pull requests, settings, and sometimes a published website.",
+    why: "Once you know the parts of a repo, GitHub stops feeling like a wall of developer words. You can inspect a project without touching anything risky.",
+    steps: [
+      "Code tab: the main file view. This is where you see folders and files like index.html or README.md.",
+      "README: the front page note for the repo. It usually explains what the project is and how to run or use it.",
+      "Commits: the checkpoint history. Use this to see how the project changed over time.",
+      "Branches: safe side versions of the project. A branch lets someone work without immediately changing the main version.",
+      "Pull requests: review conversations around proposed changes.",
+      "Issues: task or bug cards. Teams use them to track work, questions, and follow-ups.",
+      "Actions: automated checks or deployments. For example, a website build can run when new code is pushed.",
+      "Settings: admin area for access, Pages publishing, repository visibility, and other controls.",
+    ],
+    watch: "Settings can affect publishing and access. If a repo contains company or private material, do not make it public just to test something.",
+  },
+  {
+    id: "daily-flow",
+    label: "Daily Flow",
+    title: "The everyday GitHub workflow",
+    summary: "Most GitHub work follows the same story: copy the project, make a safe change, save a checkpoint, ask for review, then merge.",
+    why: "This workflow keeps experiments separate from the official version until someone reviews them.",
+    steps: [
+      "Clone: copy the GitHub repo onto your computer so you can work on the files locally.",
+      "Branch: create a side version with a clear name like add-github-lesson or fix-homepage-button.",
+      "Edit: change the files in VS Code or with an AI coding assistant.",
+      "Test: open the app locally and check that the important workflow still works.",
+      "Commit: save a checkpoint with a human-readable message.",
+      "Push: send your branch from your computer back up to GitHub.",
+      "Pull request: ask teammates or yourself to review the change before it joins main.",
+      "Merge: move the approved change into the main branch.",
+    ],
+    watch: "Commit messages should explain the purpose, not just say update. A useful message is Add GitHub beginner guide or Fix Pages setup steps.",
+  },
+  {
+    id: "pages-publishing",
+    label: "Publish HTML",
+    title: "How GitHub Pages publishes simple web apps",
+    summary: "GitHub Pages can turn static files into a shareable website. Static means the browser can run it with HTML, CSS, JavaScript, images, and data files, without a private server.",
+    why: "This is one of the easiest ways to share a simple page, course, calculator, dashboard, or prototype.",
+    steps: [
+      "Check that the app is static: it should work with files like index.html, styles.css, app.js, images, and maybe JSON data.",
+      "Remove secrets: do not publish passwords, API keys, private customer data, internal decks, or anything that should not be visible.",
+      "Create or choose a GitHub repository for the site.",
+      "Put the website files in the repo. For a tiny app, index.html should usually sit at the top level of the repo.",
+      "Commit and push the files to GitHub.",
+      "Open repository Settings, then Pages.",
+      "Under Build and deployment, choose Deploy from a branch.",
+      "Choose the main branch and the root folder, then save.",
+      "Wait a few minutes, then use the Pages link. It often looks like https://username.github.io/repository-name/.",
+    ],
+    watch: "GitHub Pages is public on normal personal/public repos. Inside a company, use the approved internal path and approved repository visibility. Publishing is an access decision, not just a technical step.",
+  },
+  {
+    id: "ai-workflow",
+    label: "AI + GitHub",
+    title: "How Claude Code or Codex fits with GitHub",
+    summary: "AI coding tools can help read a repo, edit files, run checks, summarize changes, and prepare a pull request. GitHub is where the work becomes reviewable.",
+    why: "This is the bridge from 'AI built something on my machine' to 'a teammate can inspect, approve, and use it safely.'",
+    steps: [
+      "Open the correct project folder before asking AI to edit anything.",
+      "Ask the AI to explain the repo first: what files matter, how the app runs, and where risks live.",
+      "Ask for a plan before bigger changes.",
+      "Let it make a scoped edit, then ask for a changed-files summary.",
+      "Run the app or checks locally.",
+      "Ask the AI to review the diff and call out risks before committing.",
+      "Commit only the intended files.",
+      "Push the branch and open a pull request when the change should be reviewed or shared.",
+    ],
+    watch: "Do not let an AI commit, push, deploy, or expose a link until you understand what changed and what data the app contains.",
+  },
+];
+
+const githubConceptCards = [
+  ["Git", "The time machine", "Tracks file changes on your computer. You can use Git even before GitHub is involved."],
+  ["GitHub", "The shared project home", "Stores the project online and adds collaboration, review, issues, automation, and Pages publishing."],
+  ["Repository", "The project container", "A repo holds files, history, branches, pull requests, issues, and settings."],
+  ["Main branch", "The official version", "Usually the stable version people trust. Changes should reach main through review."],
+  ["Commit", "A saved checkpoint", "A named moment in project history. Good commits make it easier to understand and undo changes."],
+  ["Pull request", "A review request", "A page that compares your branch with main and lets people discuss before merging."],
+  ["Merge", "Bring changes together", "Adds the reviewed branch into the official version."],
+  ["GitHub Pages", "Static website publishing", "Publishes HTML/CSS/JS from a repo so others can open the app in a browser."],
+];
+
+const githubPublishChecklist = [
+  ["Good fit", "A simple website, guide, docs page, prototype, calculator, or static dashboard."],
+  ["Files needed", "Usually index.html, styles.css, app.js, image/assets folders, and maybe README.md."],
+  ["Not a fit", "Apps that need secret API keys, private databases, login rules, scheduled jobs, or shared writes."],
+  ["Safety check", "Remove private data, passwords, tokens, internal-only source files, and any customer-sensitive information."],
+  ["First publish", "Create repo, add files, commit, push, open Settings > Pages, choose branch and root folder, save."],
+  ["Updates", "Edit locally, test, commit, push again. Pages usually republishes automatically after the new version reaches the publishing branch."],
+];
+
+const githubScenarioGuides = {
+  firstWebsite: {
+    title: "I made one HTML page and want to share it",
+    answer: "Use GitHub Pages if the page has no private data and no secret key. Keep index.html at the top level, add any CSS/JS files it uses, publish from main and root.",
+    checklist: ["Open the page locally first", "Make sure all links and buttons work", "Create a repo", "Upload or push the files", "Turn on Pages from Settings"],
+  },
+  teammateReview: {
+    title: "I want someone to review my app changes",
+    answer: "Use a branch and pull request. The branch keeps your work separate; the pull request gives reviewers a place to see exactly what changed.",
+    checklist: ["Create a branch with a clear name", "Commit the intended files only", "Push the branch", "Open a pull request", "Ask the reviewer what you want feedback on"],
+  },
+  privateData: {
+    title: "My app uses private data or an API key",
+    answer: "Pause before GitHub Pages. Browser files can be inspected by users, so secrets do not belong in index.html, app.js, or public data files.",
+    checklist: ["Use fake sample data for the static prototype", "Ask what approved backend or internal platform should hold secrets", "Do not publish real customer or company-sensitive data", "Get the access path reviewed before sharing"],
+  },
+  aiBuiltIt: {
+    title: "Claude or Codex built files for me",
+    answer: "Treat the AI work like a draft. Ask it to explain the project, summarize changed files, run checks, and help you review before anything is committed or published.",
+    checklist: ["Ask what files were changed", "Open the app locally", "Check the visible content and data", "Ask for risks", "Commit only after you understand the result"],
+  },
+};
+
 const agents = [
   ["Weekly support trend summarizer", "Summarizes top contact reasons, rising issues, and recommended follow-ups.", "Cases, dashboards, docs", "Low", "Starter", "Before sending the summary", "Claude Code/Codex or Copilot Studio"],
   ["Case/ticket duplicate detector", "Finds likely duplicate tickets and suggests linking or closing paths.", "Ticket system, Jira", "Medium", "Builder", "Before changing ticket status", "Copilot Studio or Captain/MCP"],
@@ -1473,6 +1607,16 @@ const modalContent = {
       "Before letting Claude Code change anything, ask it to explain the folder, propose a plan, make a scoped change, summarize changed files, and help you test locally.",
     ],
   },
+  "github-overview": {
+    title: "GitHub map for absolute beginners",
+    body: [
+      "GitHub is a shared home for project files. It remembers changes, shows who made them, supports review, and can publish simple websites through GitHub Pages.",
+      "Git is the history system on your computer. GitHub is the online platform around that history. A repository is the project container on GitHub.",
+      "The safest collaboration flow is: create a branch, make changes, commit a checkpoint, push to GitHub, open a pull request, review, then merge into main.",
+      "GitHub Pages can publish static apps: HTML, CSS, JavaScript, images, Markdown docs, and front-end-only dashboards. It is not the right place for secret API keys, private databases, or customer-sensitive data.",
+      "When AI coding tools help, still review the changed files, test locally, and ask for a risk summary before committing, pushing, or publishing.",
+    ],
+  },
   "claude-linkedin-overview": {
     title: "Claude Code for LinkedIn: 101 to 201 map",
     body: [
@@ -1974,6 +2118,72 @@ function renderVSCodeScenario() {
     <p>${scenario.answer}</p>
     <ul>${scenario.checklist.map((item) => `<li>${item}</li>`).join("")}</ul>
   `;
+}
+
+function renderGitHubLessons(activeId = "mental-model") {
+  const selected = githubLessons.find((lesson) => lesson.id === activeId) || githubLessons[0];
+  document.querySelector("#githubTabs").innerHTML = githubLessons
+    .map((lesson) => `<button class="lesson-tab ${lesson.id === selected.id ? "active" : ""}" type="button" data-github-tab="${lesson.id}">${lesson.label}</button>`)
+    .join("");
+
+  document.querySelector("#githubLesson").innerHTML = `
+    <article class="lesson-main">
+      <div class="lesson-heading">
+        <span class="tag">GitHub lesson</span>
+        <h3>${selected.title}</h3>
+        <p>${selected.summary}</p>
+      </div>
+      <div class="rookie-callout">
+        <strong>Why this matters</strong>
+        <p>${selected.why}</p>
+      </div>
+      <div class="lesson-columns">
+        <div>
+          <h4>Step-by-step explanation</h4>
+          <ol>${selected.steps.map((step) => `<li>${step}</li>`).join("")}</ol>
+        </div>
+        <div>
+          <h4>Beginner watch-out</h4>
+          <p>${selected.watch}</p>
+          <h4>Try this prompt</h4>
+          <code>Please explain this GitHub repository in plain English. What is this project, what files matter, what branch am I on, and is it safe to publish with GitHub Pages?</code>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function renderGitHubConcepts() {
+  document.querySelector("#githubConceptGrid").innerHTML = githubConceptCards
+    .map(([term, title, body]) => `
+      <article class="command-card">
+        <code>${term}</code>
+        <strong>${title}</strong>
+        <p>${body}</p>
+      </article>
+    `)
+    .join("");
+}
+
+function renderGitHubScenario() {
+  const scenario = githubScenarioGuides[document.querySelector("#githubScenario").value] || githubScenarioGuides.firstWebsite;
+  document.querySelector("#githubScenarioResult").innerHTML = `
+    <span class="tag medium">Beginner path</span>
+    <h3>${scenario.title}</h3>
+    <p>${scenario.answer}</p>
+    <ul>${scenario.checklist.map((item) => `<li>${item}</li>`).join("")}</ul>
+  `;
+}
+
+function renderGitHubChecklist() {
+  document.querySelector("#githubPublishChecklist").innerHTML = githubPublishChecklist
+    .map(([title, body], index) => `
+      <details class="learning-accordion" ${index === 0 ? "open" : ""}>
+        <summary>${title}</summary>
+        <p>${body}</p>
+      </details>
+    `)
+    .join("");
 }
 
 function renderMicrosoftLessons() {
@@ -2558,6 +2768,11 @@ function wireEvents() {
       renderVSCodeLessons(vscodeTab.dataset.vscodeTab);
     }
 
+    const githubTab = event.target.closest("[data-github-tab]");
+    if (githubTab) {
+      renderGitHubLessons(githubTab.dataset.githubTab);
+    }
+
     const claudeTab = event.target.closest("[data-claude-tab]");
     if (claudeTab) {
       renderClaudeLessons(claudeTab.dataset.claudeTab);
@@ -2594,6 +2809,7 @@ function wireEvents() {
   document.querySelector("#agentNeed").addEventListener("change", renderAgentChooser);
   document.querySelector("#anatomyScenario").addEventListener("change", renderAnatomyScenario);
   document.querySelector("#vscodeScenario").addEventListener("change", renderVSCodeScenario);
+  document.querySelector("#githubScenario").addEventListener("change", renderGitHubScenario);
   document.querySelector("#claudeScenario").addEventListener("change", renderClaudeScenario);
   document.querySelector("#deployNeed").addEventListener("change", renderDeployDecision);
   document.querySelector("#msScenario").addEventListener("change", renderMicrosoftBlueprint);
@@ -2636,6 +2852,10 @@ function init() {
   renderAnatomyScenario();
   renderVSCodeLessons();
   renderVSCodeScenario();
+  renderGitHubLessons();
+  renderGitHubConcepts();
+  renderGitHubScenario();
+  renderGitHubChecklist();
   renderClaudeLessons();
   renderClaudeScenario();
   renderClaudeCommands();

@@ -28,6 +28,7 @@
   --sidebar-line: rgba(255, 255, 255, 0.14);
   --sidebar-text: #f4faff;
   --sidebar-muted: #bbd5ed;
+  --motion-smooth: cubic-bezier(0.2, 0.82, 0.2, 1);
 }
 
 * {
@@ -64,6 +65,28 @@ select,
 input,
 summary {
   outline-color: var(--teal);
+}
+
+@keyframes pageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes contentSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .app-shell {
@@ -375,6 +398,10 @@ h4 {
   display: none !important;
 }
 
+.course-page:not([hidden]) {
+  animation: pageSlideIn 0.38s cubic-bezier(0.2, 0.82, 0.2, 1) both;
+}
+
 .dashboard-grid {
   display: grid;
   grid-template-columns: 1.2fr 0.9fr 0.9fr;
@@ -397,6 +424,11 @@ h4 {
   gap: 16px;
   align-items: flex-start;
   margin-bottom: 18px;
+}
+
+.section-title.compact {
+  margin-top: 28px;
+  padding-top: 4px;
 }
 
 .section-title.tight {
@@ -765,6 +797,7 @@ code {
 }
 
 .microsoft-course,
+.github-course,
 .vscode-lesson,
 .claude-lesson,
 .deploy-guide {
@@ -811,6 +844,7 @@ code {
 .microsoft-workshop,
 .vscode-scenario-grid,
 .claude-tools-grid,
+.github-checklist,
 .deploy-choice-grid {
   display: grid;
   gap: 14px;
@@ -832,6 +866,14 @@ code {
 .deploy-choice-grid {
   grid-template-columns: minmax(280px, 0.75fr) minmax(0, 1.25fr);
   margin-bottom: 18px;
+}
+
+.github-concepts {
+  margin-bottom: 18px;
+}
+
+.github-checklist {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .lesson-columns > div,
@@ -1369,6 +1411,7 @@ code {
   *,
   *::before,
   *::after {
+    animation: none !important;
     scroll-behavior: auto !important;
     transition: none !important;
   }
@@ -1428,6 +1471,7 @@ code {
   .vscode-scenario-grid,
   .claude-flow,
   .claude-tools-grid,
+  .github-checklist,
   .deploy-choice-grid,
   .command-grid,
   .recipe-grid,
@@ -1896,7 +1940,7 @@ a:focus-visible {
 .recipe-card:hover,
 .agent-card:hover,
 .command-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   border-color: var(--line-strong);
   box-shadow: var(--shadow-tight);
 }
@@ -2147,7 +2191,7 @@ input:focus {
 }
 
 .lesson-tab:hover {
-  transform: none;
+  transform: translateY(-1px);
   color: var(--teal-dark);
   background: rgba(255, 255, 255, 0.72);
   border-color: transparent;
@@ -2166,6 +2210,7 @@ input:focus {
     linear-gradient(180deg, #ffffff, #f8fbfd);
   border-color: #cfdbe6;
   box-shadow: var(--shadow-soft);
+  animation: contentSlideUp 0.32s cubic-bezier(0.2, 0.82, 0.2, 1) both;
 }
 
 .lesson-heading {
@@ -2395,11 +2440,16 @@ input:focus {
   border: 1px solid #c6dcf2;
   border-radius: var(--radius);
   font-weight: 900;
+  transition:
+    transform 0.22s var(--motion-smooth),
+    background 0.22s ease,
+    border-color 0.22s ease;
 }
 
 .learning-accordion[open] summary::after,
 .deploy-step[open] summary::after {
   content: "-";
+  transform: rotate(180deg);
 }
 
 .learning-accordion summary {
@@ -2410,6 +2460,12 @@ input:focus {
 .learning-accordion p {
   padding: 0 16px 18px;
   color: var(--muted);
+}
+
+.learning-accordion[open] p,
+.deploy-step[open] .deploy-step-body,
+.setup-item[open] .setup-detail-grid {
+  animation: contentSlideUp 0.28s cubic-bezier(0.2, 0.82, 0.2, 1) both;
 }
 
 .setup-item summary {
