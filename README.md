@@ -24,11 +24,7 @@ This course includes company-specific learning content. Use an approved internal
 8. Click `Save`.
 9. Wait a few minutes, then use the `Visit site` link on the Pages settings page.
 
-The project URL usually looks like:
-
-```text
-https://<your-github-username-or-org>.github.io/<repository-name>/
-```
+The project URL: https://rockfordlive.github.io/rookie-to-builder-academy/
 
 ## Updating The Site
 
